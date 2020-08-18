@@ -3,7 +3,7 @@ Lista Empleados
 --------------- <br>
 <br>
 {% for empleado in empleados %}
-        
+    <a href="{% url 'empleado' empleado.id %}">ver detalles</a>    
     Nombre: {{ empleado.nombre }}<br>
     Sueldo: {{ empleado.sueldo }}<br>
     {% if empleado.sueldo > 18000 %}
