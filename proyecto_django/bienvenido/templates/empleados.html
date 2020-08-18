@@ -1,0 +1,14 @@
+Lista Empleados
+
+--------------- <br>
+<br>
+{% for empleado in empleados %}
+        
+    Nombre: {{ empleado.nombre }}<br>
+    Sueldo: {{ empleado.sueldo }}<br>
+    {% if empleado.sueldo > 18000 %}
+        Sueldo mayor a 18000
+    {% endif %}
+    <br>
+    <br>
+{% endfor %}
