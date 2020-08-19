@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from bienvenido.models import Empleado, Departamento
-
+from bienvenido.forms import EmpleadoForm, DepartamentoForm
 # Create your views here.
 
 def index(request):
@@ -43,3 +43,23 @@ def listar_departamentos(request):
         "departamentos": departamentos,
     }
     return render(request, "lista_departamentos.html", contexto)
+
+def crear_empleado(request):
+    if request.method == "POST":
+        form=EmpleadoForm(request.POST)
+        if form.is_valid():
+            Empleado=form.save()
+            return HttpResponse("Empleado Creado")
+    form=EmpleadoForm()
+    contexto={"form":form}
+    return render(request, "nuevo_empleado.html", contexto)
+
+def crear_departamento(request):
+    if request.method == "POST":
+        form=DepartamentoForm(request.POST)
+        if form.is_valid():
+            Departamento=form.save()
+            return redirect("departamentos_lista")
+    form=DepartamentoForm()
+    contexto={"form":form}
+    return render(request, "nuevo_departamento.html", contexto)   
