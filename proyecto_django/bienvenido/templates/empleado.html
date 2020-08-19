@@ -1,9 +1,18 @@
-Empleado: {{ empleado.nombre }}<br>
-Departamento: {{ empleado.departamento }}<br>
-Sueldo: ${{ empleado.sueldo }}
+{%extends "base.html"%}
 
-{% if empleado.sueldo > 16000 %}
-    :)
-{% else %}
-    :(
-{% endif %}
+{% block titulo%}
+Empleado:{{empleado.nombre}}
+{% endblock %}<br>
+
+{% block contenido%}
+    Empleado: {{ empleado.nombre }}<br>
+    Departamento: {{ empleado.departamento }}<br>
+    Sueldo: ${{ empleado.sueldo }}
+
+    {% if empleado.sueldo > 16000 %}
+        :)
+    {% else %}
+        :(
+    {% endif %}
+
+{% endblock %}

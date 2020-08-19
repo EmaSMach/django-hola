@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+
+{% block titulo%}
+Nuevo Departamento
+{% endblock %}<br>
+
+{% block contenido%}
+    <form method="POST">
+        {%csrf_token%}
+        {{form.as_p}}
+        <button type="submit">Crear</button>
+    </form>
+{% endblock %}<br>
