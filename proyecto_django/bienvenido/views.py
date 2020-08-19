@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from bienvenido.models import Empleado
+from bienvenido.models import Empleado, Departamento
 
 # Create your views here.
 
@@ -35,3 +35,11 @@ def empleados(request):
         "empleados":lista_empleados,
     }
     return render(request, "empleados.html", contexto)
+
+
+def listar_departamentos(request):
+    departamentos = Departamento.objects.all()
+    contexto = {
+        "departamentos": departamentos,
+    }
+    return render(request, "lista_departamentos.html", contexto)
