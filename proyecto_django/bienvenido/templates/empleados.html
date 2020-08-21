@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {%block titulo%}
-Lista Empleados
+    Lista Empleados
 {% endblock %}
 
 {% block contenido %}
     {% for empleado in empleados %}
-        <a href="{% url 'empleado' empleado.id %}">ver detalles</a>    
         Nombre: {{ empleado.nombre }}<br>
         Sueldo: {{ empleado.sueldo }}<br>
         {% if empleado.sueldo > 18000 %}
             Sueldo mayor a 18000
         {% endif %}
         <br>
+        <a href="{% url 'empleado' empleado.id %}">ver detalles</a><br>  
         <a href="{%url 'borrar_empleado' empleado.id%}">Borrar</a>
         <br>
     {% endfor %}

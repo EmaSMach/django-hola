@@ -1,14 +1,16 @@
 {%extends "base.html"%}
 
+{%block titulo%}
+    Lista Departamentos
+{% endblock %}
+
 {% block contenido%}
-<html>
-    <h1>Departamentos</h1>
-    <ul>
-        {% for departamento in departamentos %}
-        <li>
-            <a href="">{{ departamento.nombre }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</html>
+    {% for dpto in departamentos %}
+        Nombre: {{ dpto.nombre }}<br>
+        Descripción: {{ dpto.descripción }}<br>
+        <a href="#">ver detalles</a><br>  
+        <a href="#">Borrar</a>
+        <br>
+        <br>
+    {% endfor %}
 {% endblock%}
