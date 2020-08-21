@@ -1,9 +1,19 @@
-Empleado: {{ empleado.nombre }}<br>
-Departamento: {{ empleado.departamento }}<br>
-Sueldo: ${{ empleado.sueldo }}
+{% extends "base.html" %}
+{%block titulo%}
+Empleado: {{empleado.nombre}}
+{% endblock %}
 
-{% if empleado.sueldo > 16000 %}
-    :)
-{% else %}
-    :(
-{% endif %}
+{% block contenido %}
+    
+    Empleado: {{ empleado.nombre }}<br>
+    Departamento: {{ empleado.departamento }}<br>
+    Sueldo: ${{ empleado.sueldo }}
+
+    {% if empleado.sueldo > 16000 %}
+        :)
+    {% else %}
+        :(
+    {% endif %}
+    <a href="{%url 'borrar_empleado' empleado.id%}">Borrar</a>
+{% endblock %}
+
