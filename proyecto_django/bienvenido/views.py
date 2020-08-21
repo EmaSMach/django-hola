@@ -1,13 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from bienvenido.models import Empleado, Departamento
-<<<<<<< HEAD
 
-from bienvenido.forms import EmpleadoForm
-=======
 from bienvenido.forms import EmpleadoForm, DepartamentoForm
->>>>>>> 230d6dd5e32873dc5abf442f440ac60228e66ae6
-# Create your views here.
+
 
 def index(request):
     contexto = {
