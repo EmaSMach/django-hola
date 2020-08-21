@@ -10,5 +10,8 @@ urlpatterns = [
     path("departamentos/", views.listar_departamentos, name="departamentos_lista"),
 
     path("base/", views.base_template),
-    path("nuevo_empleado/", views.crear_empleado)
+    path("nuevo_empleado/", views.crear_empleado),
+
+    path("nuevo_departamento/", views.crear_departamento),    
+
 ]

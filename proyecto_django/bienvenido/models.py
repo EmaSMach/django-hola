@@ -8,6 +8,7 @@ class Departamento(models.Model):
     def __str__(self):
         return self.nombre
 
+
 class Empleado(models.Model):
     nombre = models.CharField(max_length=30)
     nacimiento = models.DateField()
