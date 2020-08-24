@@ -16,6 +16,14 @@ def index(request):
 def chau(request):
     return render(request, "chau.html", {})
 
+
+def empleados(request):
+    lista_empleados = Empleado.objects.all()
+    contexto = {
+        "empleados":lista_empleados,
+    }
+    return render(request, "empleados.html", contexto)
+
 def mostrar_empleado(request, id):
     emp = Empleado.objects.get(pk=id)
     contexto = {
@@ -29,14 +37,6 @@ def borrar_empleado(request, id):
     nombre = emp.nombre
     emp.delete()
     return HttpResponse(nombre + " Borrado!")
-
-def empleados(request):
-    lista_empleados = Empleado.objects.all()
-    contexto = {
-        "empleados":lista_empleados,
-    }
-    return render(request, "empleados.html", contexto)
-
 
 def listar_departamentos(request):
     departamentos = Departamento.objects.all()
@@ -57,9 +57,30 @@ def crear_empleado(request):
             return HttpResponse("EMPLEADO CREADO")
 
     form = EmpleadoForm()
-    contexto = {"form":form}
+    contexto = {"form":form,
+        "operacion":"CREAR"
+    }
     return render(request, "nuevo_empleado.html", contexto)
 
+def editar_empleado(request, id):
+    empleado = Empleado.objects.get(pk = id)
+
+    if request.method == "GET":
+        form = EmpleadoForm(instance = empleado)
+        contexto = {
+            "form" : form
+        }
+        return render(request, "nuevo_empleado.html", contexto)
+
+    elif request.method == "POST":
+        form = EmpleadoForm(request.POST, instance = empleado)
+        if form.is_valid():
+            emp = form.save()
+            return redirect("empleado", emp.id)
+
+
+
+    
 
 def crear_departamento(request):
     if request.method == "POST":

@@ -1,14 +1,24 @@
 {% extends "base.html" %}
 
 {%block titulo%}
-Nuevo Empleado
+    {% if operacion == 'CREAR' %}
+        Nuevo Empleado
+    {% else %}
+        Editar Empleado
+    {% endif %}
 {% endblock %}<br>
 
 {% block contenido %}
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Crear</button>
+        <button type="submit">
+            {% if operacion == 'CREAR' %}
+                Crear
+            {% else %}
+                Guardar
+            {% endif %}
+        </button>
     </form>
 
 {% endblock %}
