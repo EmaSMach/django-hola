@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block contenido %}
+
+    <form method="GET">
+        <input type="text" name="nombre_empleado" value="{{ param_nombre }}">
+        <button type="submit">filtar</button>    
+    </form>
+
     {% for empleado in empleados %}
         Nombre: {{ empleado.nombre }}<br>
         Sueldo: {{ empleado.sueldo }}<br>

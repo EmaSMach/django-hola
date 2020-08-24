@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+{% include "bienvenido/navbar.html" %}<br>
+__________________
+<br><br>
+{%block titulo%}
+{% endblock %}
+<br><br>
+--------------
+<br><br>
+
+{% block contenido %}
+{% endblock %}
+
+<br><br>
+----------------
+
+
+
+</body>
+</html>

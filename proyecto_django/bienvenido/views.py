@@ -5,16 +5,17 @@ from bienvenido.models import Empleado, Departamento
 from bienvenido.forms import EmpleadoForm, DepartamentoForm
 
 
+
 def index(request):
     contexto = {
         "saludo":"Hola Mundo",
         "numero":234
     }
-    return render(request, "hola.html", contexto)
+    return render(request, "bienvenido/hola.html", contexto)
     #return HttpResponse("Hola Mundo!")
 
 def chau(request):
-    return render(request, "chau.html", {})
+    return render(request, "bienvenido/chau.html", {})
 
 
 def empleados(request):
@@ -22,14 +23,27 @@ def empleados(request):
     contexto = {
         "empleados":lista_empleados,
     }
-    return render(request, "empleados.html", contexto)
+    return render(request, "bienvenido/empleados.html", contexto)
+
+
+def search_empleados(request):
+    print(request.GET)
+    nombre = request.GET.get("nombre_empleado", "")
+
+    lista_empleados = Empleado.objects.filter(nombre__icontains = nombre)
+    contexto = {
+        "empleados":lista_empleados,
+        "param_nombre":nombre
+    }
+    return render(request, "bienvenido/search_empleados.html", contexto)
+
 
 def mostrar_empleado(request, id):
     emp = Empleado.objects.get(pk=id)
     contexto = {
         "empleado":emp
     }
-    return render(request, "empleado.html", contexto)
+    return render(request, "bienvenido/empleado.html", contexto)
     #return HttpResponse(emp.nombre)
 
 def borrar_empleado(request, id):
@@ -43,7 +57,7 @@ def listar_departamentos(request):
     contexto = {
         "departamentos": departamentos,
     }
-    return render(request, "lista_departamentos.html", contexto)
+    return render(request, "bienvenido/lista_departamentos.html", contexto)
 
 
 def base_template(request):
@@ -53,14 +67,15 @@ def crear_empleado(request):
     if request.method == "POST":
         form = EmpleadoForm(request.POST)
         if form.is_valid():
-            Empleado = form.save()
+            empleado = form.save(commit=False)
+            empleado.save()
             return HttpResponse("EMPLEADO CREADO")
 
     form = EmpleadoForm()
     contexto = {"form":form,
         "operacion":"CREAR"
     }
-    return render(request, "nuevo_empleado.html", contexto)
+    return render(request, "bienvenido/nuevo_empleado.html", contexto)
 
 def editar_empleado(request, id):
     empleado = Empleado.objects.get(pk = id)
@@ -70,7 +85,7 @@ def editar_empleado(request, id):
         contexto = {
             "form" : form
         }
-        return render(request, "nuevo_empleado.html", contexto)
+        return render(request, "bienvenido/nuevo_empleado.html", contexto)
 
     elif request.method == "POST":
         form = EmpleadoForm(request.POST, instance = empleado)
