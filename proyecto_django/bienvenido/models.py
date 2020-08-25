@@ -5,6 +5,10 @@ class Departamento(models.Model):
     nombre = models.CharField(max_length=30)
     descripcion = models.CharField(max_length=30)
 
+    def cantidad_empleados(self):
+        lista_emp = Empleado.objects.filter(departamento = self)
+        return len(lista_emp)
+
     def __str__(self):
         return self.nombre
 

@@ -94,9 +94,6 @@ def editar_empleado(request, id):
             return redirect("empleado", emp.id)
 
 
-
-    
-
 def crear_departamento(request):
     if request.method == "POST":
         form=DepartamentoForm(request.POST)
@@ -105,4 +102,11 @@ def crear_departamento(request):
             return redirect("departamentos_lista")
     form=DepartamentoForm()
     contexto={"form":form}
-    return render(request, "nuevo_departamento.html", contexto)
+    return render(request, "bienvenido/nuevo_departamento.html", contexto)
+
+def mostrar_departamento(request, id):
+    depto = Departamento.objects.get(pk=id)
+    contexto = {
+        "departamento":depto
+    }
+    return render(request, "bienvenido/mostrar_departamento.html", contexto)

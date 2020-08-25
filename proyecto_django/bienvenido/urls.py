@@ -6,7 +6,7 @@ urlpatterns = [
     path("chau/", views.chau, name="despedida"),
     path("base/", views.base_template),
 
-    path("empleados/", views.empleados),
+    path("empleados/", views.empleados, name="lista_empleados"),
     path("empleado/<int:id>", views.mostrar_empleado, name="empleado"),
     path("empleado/nuevo/", views.crear_empleado),
     path("empleado/borrar/<int:id>", views.borrar_empleado, name="borrar_empleado"),
@@ -15,6 +15,8 @@ urlpatterns = [
     path("search_empleados/", views.search_empleados),    
 
     path("departamentos/", views.listar_departamentos, name="departamentos_lista"),
-    path("departamento/nuevo/", views.crear_departamento),    
+    path("departamento/nuevo/", views.crear_departamento),
+
+    path("departamento/<int:id>", views.mostrar_departamento, name="departamento"),
 
 ]

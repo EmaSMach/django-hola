@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{%block titulo%}
+    Departamento: {{departamento.nombre}}
+{% endblock %}
+
+{% block contenido %}
+    Departamento: {{ departamento.nombre }}<br>
+    Descripción: {{ departamento.descripcion }}<br>
+    Cantidad de empleados: {{ departamento.cantidad_empleados }}<br>
+    Cantidad de empleados: {{ departamento.empleado_set.count }}<br>
+    Cantidad de empleados: {{ departamento.empleado_set.values }}<br>
+    <br>
+
+{% endblock %}
