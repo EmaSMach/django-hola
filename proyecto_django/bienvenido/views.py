@@ -4,6 +4,12 @@ from bienvenido.models import Empleado, Departamento
 
 from bienvenido.forms import EmpleadoForm, DepartamentoForm
 
+def borrar_departamento(request, id):
+    dept= Departamento.objects.get(pk=id)
+    dept.delete()
+    return HttpResponse(dept.nombre,"Ya se borro!")
+    
+
 
 
 def index(request):
