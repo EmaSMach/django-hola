@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block titulo%}
+	Lista Empleados
+{% endblock %}
+
+{% block contenido %}
+	<img src="{% static 'emp.jpg' %}"><br>
+	{% for empleado in empleados %}
+		Nombre: {{ empleado.nombre }}<br>
+		Sueldo: {{ empleado.sueldo }}<br>
+		{% if empleado.sueldo > 18000 %}
+			Sueldo mayor a 18000 <br>
+		{% endif %}
+		<a href="{% url 'empleado' empleado.id %}">ver detalles</a><br>
+		<a href="{%url 'borrar_empleado' empleado.id%}">Borrar</a>
+		
