@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block contenido %}
+    <img src="{{empleado.foto.url }}"><br>
+
     Empleado: {{ empleado.nombre }}<br>
     Departamento: {{ empleado.departamento }}<br>
     Sueldo: ${{ empleado.sueldo }}
