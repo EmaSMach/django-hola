@@ -18,6 +18,6 @@ class Empleado(models.Model):
     nacimiento = models.DateField()
     sueldo = models.DecimalField(decimal_places=2, max_digits=10)
     departamento = models.ForeignKey(Departamento, on_delete = models.CASCADE)
-
+    foto = models.ImageField(upload_to="empleados/", null=True, blank=True)
     def __str__(self):
         return self.nombre

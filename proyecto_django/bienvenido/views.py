@@ -43,11 +43,13 @@ def search_empleados(request):
 
 def crear_empleado(request):
     if request.method == "POST":
-        form = EmpleadoForm(request.POST)
+        form = EmpleadoForm(request.POST, request.FILES)
         if form.is_valid():
             empleado = form.save(commit=False)
             empleado.save()
             return HttpResponse("EMPLEADO CREADO")
+        else:
+            print(form.errors)
 
     form = EmpleadoForm()
     contexto = {"form":form,
